@@ -21,12 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import io.github.eocqrs.xfake.FkStorage;
 import org.xembly.Directives;
-
 import java.util.Collection;
 
 /**
@@ -37,40 +35,30 @@ import java.util.Collection;
  */
 public final class InXml implements FkBroker {
 
-  /**
-   * Storage.
-   */
-  private final FkStorage storage;
+    /**
+     * Storage.
+     */
+    private final FkStorage storage;
 
-  /**
-   * Ctor.
-   *
-   * @param strg Storage.
-   * @throws Exception When something went wrong.
-   */
-  public InXml(final FkStorage strg)
-    throws Exception {
-    this.storage = strg;
-    this.storage.apply(
-      new Directives()
-        .xpath("broker")
-        .addIf("topics")
-    );
-    this.storage.apply(
-      new Directives()
-        .xpath("broker")
-        .addIf("subs")
-    );
-  }
+    /**
+     * Ctor.
+     *
+     * @param strg Storage.
+     * @throws Exception When something went wrong.
+     */
+    public InXml(final FkStorage strg) throws Exception {
+        this.storage = strg;
+        this.storage.apply(new Directives().xpath("broker").addIf("topics"));
+        this.storage.apply(new Directives().xpath("broker").addIf("subs"));
+    }
 
-  @Override
-  public FkBroker with(final Directives dirs) throws Exception {
-    this.storage.apply(dirs);
-    return this;
-  }
+    @Override
+    public FkBroker with(final Directives dirs) throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public Collection<String> data(final String query) throws Exception {
-    return this.storage.xml().xpath(query);
-  }
+    @Override
+    public Collection<String> data(final String query) throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

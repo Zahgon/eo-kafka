@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
@@ -37,35 +36,29 @@ import org.xembly.Directives;
  */
 public final class WithRebalanceListener implements Scalar<Directives> {
 
-  /**
-   * Origin Directives.
-   */
-  private final Scalar<Directives> dirs;
-  /**
-   * ConsumerRebalanceListener.
-   */
-  private final ConsumerRebalanceListener listener;
+    /**
+     * Origin Directives.
+     */
+    private final Scalar<Directives> dirs;
 
-  /**
-   * Ctor.
-   *
-   * @param drs   Directives
-   * @param lstnr Listener
-   */
-  public WithRebalanceListener(
-    final Scalar<Directives> drs,
-    final ConsumerRebalanceListener lstnr
-  ) {
-    this.dirs = drs;
-    this.listener = lstnr;
-  }
+    /**
+     * ConsumerRebalanceListener.
+     */
+    private final ConsumerRebalanceListener listener;
 
-  @Override
-  public Directives value() throws Exception {
-    return this.dirs
-      .value()
-      .up()
-      .addIf("listener")
-      .set(this.listener.toString());
-  }
+    /**
+     * Ctor.
+     *
+     * @param drs   Directives
+     * @param lstnr Listener
+     */
+    public WithRebalanceListener(final Scalar<Directives> drs, final ConsumerRebalanceListener lstnr) {
+        this.dirs = drs;
+        this.listener = lstnr;
+    }
+
+    @Override
+    public Directives value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

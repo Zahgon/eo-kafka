@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.data;
 
 import io.github.eocqrs.kafka.Message;
@@ -40,42 +39,34 @@ import org.cactoos.scalar.Synced;
  */
 public final class WithPartition<K, X> implements Message<K, X> {
 
-  /**
-   * Partition.
-   */
-  private final int partition;
+    /**
+     * Partition.
+     */
+    private final int partition;
 
-  /*
+    /*
    * @todo #428:60min/DEV Write tests for WithPartition caching mechanism.
    *   We need to prove with tests that our caching works
    *   and that it is also thread-safe.
    * */
-  /**
-   * Message.
-   */
-  private final Scalar<ProducerRecord<K, X>> message;
+    /**
+     * Message.
+     */
+    private final Scalar<ProducerRecord<K, X>> message;
 
-  /**
-   * Ctor.
-   *
-   * @param prtn Partition
-   * @param msg  Message
-   */
-  public WithPartition(
-    final int prtn,
-    final Message<K, X> msg
-  ) {
-    this.partition = prtn;
-    this.message = new Synced<>(new Sticky<>(msg));
-  }
+    /**
+     * Ctor.
+     *
+     * @param prtn Partition
+     * @param msg  Message
+     */
+    public WithPartition(final int prtn, final Message<K, X> msg) {
+        this.partition = prtn;
+        this.message = new Synced<>(new Sticky<>(msg));
+    }
 
-  @Override
-  public ProducerRecord<K, X> value() throws Exception {
-    return new ProducerRecord<>(
-      this.message.value().topic(),
-      this.partition,
-      this.message.value().key(),
-      this.message.value().value()
-    );
-  }
+    @Override
+    public ProducerRecord<K, X> value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.data;
 
 import io.github.eocqrs.kafka.Data;
@@ -39,33 +38,33 @@ import lombok.RequiredArgsConstructor;
 @Deprecated(since = "0.3.6")
 public final class KfData<X> implements Data<X> {
 
-  /**
-   * Data type.
-   */
-  private final X data;
-  /**
-   * Kafka message topic.
-   */
-  private final String topic;
-  /**
-   * Kafka partition.
-   */
-  private final int partition;
+    /**
+     * Data type.
+     */
+    private final X data;
 
-  @Override
-  public Dataized<X> dataized() {
-    return new KfDataized<>(
-      this.data
-    );
-  }
+    /**
+     * Kafka message topic.
+     */
+    private final String topic;
 
-  @Override
-  public String topic() {
-    return this.topic;
-  }
+    /**
+     * Kafka partition.
+     */
+    private final int partition;
 
-  @Override
-  public int partition() {
-    return this.partition;
-  }
+    @Override
+    public Dataized<X> dataized() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public String topic() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public int partition() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

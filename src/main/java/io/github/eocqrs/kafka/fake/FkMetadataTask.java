@@ -21,11 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.apache.kafka.clients.producer.RecordMetadata;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
@@ -38,25 +36,23 @@ import java.util.concurrent.FutureTask;
  */
 public final class FkMetadataTask extends FutureTask<RecordMetadata> {
 
-  /**
-   * Metadata.
-   */
-  private final RecordMetadata metadata;
+    /**
+     * Metadata.
+     */
+    private final RecordMetadata metadata;
 
-  /**
-   * Ctor.
-   *
-   * @param mtdt RecordMetadata
-   */
-  public FkMetadataTask(
-    final RecordMetadata mtdt
-  ) {
-    super(() -> mtdt);
-    this.metadata = mtdt;
-  }
+    /**
+     * Ctor.
+     *
+     * @param mtdt RecordMetadata
+     */
+    public FkMetadataTask(final RecordMetadata mtdt) {
+        super(() -> mtdt);
+        this.metadata = mtdt;
+    }
 
-  @Override
-  public RecordMetadata get() throws InterruptedException, ExecutionException {
-    return this.metadata;
-  }
+    @Override
+    public RecordMetadata get() throws InterruptedException, ExecutionException {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

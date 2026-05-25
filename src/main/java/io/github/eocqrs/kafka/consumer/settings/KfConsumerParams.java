@@ -26,7 +26,6 @@ package io.github.eocqrs.kafka.consumer.settings;
 import io.github.eocqrs.kafka.Params;
 import io.github.eocqrs.kafka.ParamsAttr;
 import lombok.RequiredArgsConstructor;
-
 import java.util.Collection;
 
 /**
@@ -39,19 +38,18 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public final class KfConsumerParams implements Params {
 
-  /**
-   * The origin.
-   */
-  private final Params origin;
+    /**
+     * The origin.
+     */
+    private final Params origin;
 
-  @Override
-  public Collection<ParamsAttr> all() {
-    return this.origin.all();
-  }
+    @Override
+    public Collection<ParamsAttr> all() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String asXml() {
-    return "<consumer>\n%s\n</consumer>\n"
-      .formatted(this.origin.asXml());
-  }
+    @Override
+    public String asXml() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

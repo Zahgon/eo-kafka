@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.cactoos.Scalar;
@@ -35,37 +34,29 @@ import org.xembly.Directives;
  */
 public final class SeenDirs implements Scalar<Directives> {
 
-  /**
-   * Topic.
-   */
-  private final String topic;
-  /**
-   * Fetched value.
-   */
-  private final String fetched;
+    /**
+     * Topic.
+     */
+    private final String topic;
 
-  /**
-   * Ctor.
-   *
-   * @param tpc Topic
-   * @param ftcd Fetched value
-   */
-  public SeenDirs(final String tpc, final String ftcd) {
-    this.topic = tpc;
-    this.fetched = ftcd;
-  }
+    /**
+     * Fetched value.
+     */
+    private final String fetched;
 
-  @Override
-  public Directives value() throws Exception {
-    return new Directives()
-      .xpath(
-        ("broker/topics/topic[name = '%s']/datasets/dataset[value = '%s'"
-          + " and seen = 'false']/seen/text()")
-          .formatted(
-            this.topic,
-            this.fetched
-          )
-      )
-      .set("true");
-  }
+    /**
+     * Ctor.
+     *
+     * @param tpc Topic
+     * @param ftcd Fetched value
+     */
+    public SeenDirs(final String tpc, final String ftcd) {
+        this.topic = tpc;
+        this.fetched = ftcd;
+    }
+
+    @Override
+    public Directives value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import io.github.eocqrs.kafka.Data;
@@ -39,47 +38,29 @@ import org.xembly.Directives;
 @SuppressWarnings("deprecation")
 public final class DatasetDirs<K, X> implements Scalar<Directives> {
 
-  /**
-   * Dataset Key.
-   */
-  private final K key;
-  /**
-   * Dataset Data.
-   */
-  private final Data<X> data;
+    /**
+     * Dataset Key.
+     */
+    private final K key;
 
-  /**
-   * Ctor.
-   *
-   * @param key  Key
-   * @param data Data
-   */
-  public DatasetDirs(final K key, final Data<X> data) {
-    this.key = key;
-    this.data = data;
-  }
+    /**
+     * Dataset Data.
+     */
+    private final Data<X> data;
 
-  @Override
-  public Directives value() throws Exception {
-    return new Directives()
-      .xpath(
-        "broker/topics/topic[name = '%s']"
-          .formatted(
-            this.data.topic()
-          )
-      )
-      .addIf("datasets")
-      .add("dataset")
-      .add("partition")
-      .set(this.data.partition())
-      .up()
-      .addIf("key")
-      .set(this.key)
-      .up()
-      .addIf("value")
-      .set(this.data.dataized().dataize())
-      .up()
-      .addIf("seen")
-      .set("false");
-  }
+    /**
+     * Ctor.
+     *
+     * @param key  Key
+     * @param data Data
+     */
+    public DatasetDirs(final K key, final Data<X> data) {
+        this.key = key;
+        this.data = data;
+    }
+
+    @Override
+    public Directives value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -21,12 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.cactoos.Scalar;
 import org.xembly.Directives;
-
 import java.util.UUID;
 
 /**
@@ -37,29 +35,22 @@ import java.util.UUID;
  */
 public final class UnsubscribeDirs implements Scalar<Directives> {
 
-  /**
-   * Consumer ID.
-   */
-  private final UUID consumer;
+    /**
+     * Consumer ID.
+     */
+    private final UUID consumer;
 
-  /**
-   * Ctor.
-   *
-   * @param cnsmr Consumer ID
-   */
-  public UnsubscribeDirs(final UUID cnsmr) {
-    this.consumer = cnsmr;
-  }
+    /**
+     * Ctor.
+     *
+     * @param cnsmr Consumer ID
+     */
+    public UnsubscribeDirs(final UUID cnsmr) {
+        this.consumer = cnsmr;
+    }
 
-  @Override
-  public Directives value() throws Exception {
-    return new Directives()
-      .xpath("broker/subs/sub[consumer = '%s']/consumer"
-        .formatted(
-          this.consumer
-        )
-      )
-      .remove()
-      .remove();
-  }
+    @Override
+    public Directives value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

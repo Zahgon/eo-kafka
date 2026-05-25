@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.data;
 
 import io.github.eocqrs.kafka.Dataized;
@@ -37,13 +36,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public final class KfDataized<X> implements Dataized<X> {
 
-  /**
-   * Inside.
-   */
-  private final X data;
+    /**
+     * Inside.
+     */
+    private final X data;
 
-  @Override
-  public X dataize() {
-    return this.data;
-  }
+    @Override
+    public X dataize() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

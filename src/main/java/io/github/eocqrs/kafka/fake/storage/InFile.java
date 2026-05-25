@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake.storage;
 
 import com.jcabi.xml.XML;
@@ -31,7 +30,6 @@ import org.cactoos.scalar.LengthOf;
 import org.cactoos.text.TextOf;
 import org.xembly.Directive;
 import org.xembly.Xembler;
-
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
@@ -45,82 +43,54 @@ import java.nio.charset.StandardCharsets;
 @Deprecated(since = "0.2.4")
 public final class InFile implements FkStorage {
 
-  /**
-   * File name.
-   */
-  private final transient String name;
-  /**
-   * Lock.
-   */
-  private final transient ImmutableReentrantLock lock =
-    new ImmutableReentrantLock();
+    /**
+     * File name.
+     */
+    private final transient String name;
 
-  /**
-   * Ctor.
-   *
-   * @throws Exception When something went wrong.
-   */
-  public InFile() throws Exception {
-    this(File.createTempFile("fake-kafka", ".xml"));
-    new File(this.name).deleteOnExit();
-  }
+    /**
+     * Lock.
+     */
+    private final transient ImmutableReentrantLock lock = new ImmutableReentrantLock();
 
-  /**
-   * Ctor.
-   *
-   * @param file File
-   * @throws Exception When something went wrong.
-   */
-  public InFile(final File file) throws Exception {
-    new LengthOf(
-      new TeeInput(
-        "<broker/>",
-        file,
-        StandardCharsets.UTF_8
-      )
-    ).value();
-    this.name = file.getAbsolutePath();
-  }
-
-  @Override
-  public XML xml() throws Exception {
-    synchronized (this.name) {
-      return new XMLDocument(
-        new TextOf(
-          new File(
-            this.name
-          )
-        ).asString()
-      );
+    /**
+     * Ctor.
+     *
+     * @throws Exception When something went wrong.
+     */
+    public InFile() throws Exception {
+        this(File.createTempFile("fake-kafka", ".xml"));
+        new File(this.name).deleteOnExit();
     }
-  }
 
-  @Override
-  public void apply(final Iterable<Directive> dirs) throws Exception {
-    synchronized (this.name) {
-      new LengthOf(
-        new TeeInput(
-          new XMLDocument(
-            new Xembler(
-              dirs
-            ).applyQuietly(this.xml().node())
-          ).toString(),
-          new File(
-            this.name
-          ),
-          StandardCharsets.UTF_8
-        )
-      ).value();
+    /**
+     * Ctor.
+     *
+     * @param file File
+     * @throws Exception When something went wrong.
+     */
+    public InFile(final File file) throws Exception {
+        new LengthOf(new TeeInput("<broker/>", file, StandardCharsets.UTF_8)).value();
+        this.name = file.getAbsolutePath();
     }
-  }
 
-  @Override
-  public void lock() {
-    this.lock.lock();
-  }
+    @Override
+    public XML xml() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void unlock() {
-    this.lock.unlock();
-  }
+    @Override
+    public void apply(final Iterable<Directive> dirs) throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void lock() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void unlock() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

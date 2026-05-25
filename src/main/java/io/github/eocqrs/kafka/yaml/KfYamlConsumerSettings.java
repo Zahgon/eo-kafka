@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.yaml;
 
 import io.github.eocqrs.kafka.ConsumerSettings;
@@ -33,35 +32,34 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
  * @param <K> The key type.
  * @param <X> The value type.
  */
-public final class KfYamlConsumerSettings<K, X>
-  implements ConsumerSettings<K, X> {
+public final class KfYamlConsumerSettings<K, X> implements ConsumerSettings<K, X> {
 
-  /**
-   * YAML params.
-   */
-  private final YamlMapParams params;
+    /**
+     * YAML params.
+     */
+    private final YamlMapParams params;
 
-  /**
-   * Ctor.
-   *
-   * @param prms YAML Params
-   */
-  public KfYamlConsumerSettings(final YamlMapParams prms) {
-    this.params = prms;
-  }
+    /**
+     * Ctor.
+     *
+     * @param prms YAML Params
+     */
+    public KfYamlConsumerSettings(final YamlMapParams prms) {
+        this.params = prms;
+    }
 
-  /**
-   * Ctor.
-   *
-   * @param nm YAML file name
-   * @throws Exception when something went wrong
-   */
-  public KfYamlConsumerSettings(final String nm) throws Exception {
-    this(new YamlMapParams(nm));
-  }
+    /**
+     * Ctor.
+     *
+     * @param nm YAML file name
+     * @throws Exception when something went wrong
+     */
+    public KfYamlConsumerSettings(final String nm) throws Exception {
+        this(new YamlMapParams(nm));
+    }
 
-  @Override
-  public KafkaConsumer<K, X> consumer() {
-    return new KafkaConsumer<>(this.params.value());
-  }
+    @Override
+    public KafkaConsumer<K, X> consumer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

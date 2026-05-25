@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.data;
 
 import io.github.eocqrs.kafka.Message;
@@ -37,42 +36,36 @@ import org.apache.kafka.clients.producer.ProducerRecord;
  */
 public final class Tkv<K, X> implements Message<K, X> {
 
-  /**
-   * Topic.
-   */
-  private final String topic;
-  /**
-   * Key.
-   */
-  private final K key;
-  /**
-   * Value.
-   */
-  private final X value;
+    /**
+     * Topic.
+     */
+    private final String topic;
 
-  /**
-   * Ctor.
-   *
-   * @param tpc Topic
-   * @param key Key
-   * @param val Value
-   */
-  public Tkv(
-    final String tpc,
-    final K key,
-    final X val
-  ) {
-    this.topic = tpc;
-    this.key = key;
-    this.value = val;
-  }
+    /**
+     * Key.
+     */
+    private final K key;
 
-  @Override
-  public ProducerRecord<K, X> value() throws Exception {
-    return new ProducerRecord<>(
-      this.topic,
-      this.key,
-      this.value
-    );
-  }
+    /**
+     * Value.
+     */
+    private final X value;
+
+    /**
+     * Ctor.
+     *
+     * @param tpc Topic
+     * @param key Key
+     * @param val Value
+     */
+    public Tkv(final String tpc, final K key, final X val) {
+        this.topic = tpc;
+        this.key = key;
+        this.value = val;
+    }
+
+    @Override
+    public ProducerRecord<K, X> value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

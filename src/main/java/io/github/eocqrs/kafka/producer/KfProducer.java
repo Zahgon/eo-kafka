@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.producer;
 
 import io.github.eocqrs.kafka.Message;
@@ -29,7 +28,6 @@ import io.github.eocqrs.kafka.Producer;
 import io.github.eocqrs.kafka.ProducerSettings;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.RecordMetadata;
-
 import java.util.concurrent.Future;
 
 /**
@@ -42,39 +40,38 @@ import java.util.concurrent.Future;
  */
 public final class KfProducer<K, X> implements Producer<K, X> {
 
-  /**
-   * Origin Kafka Producer.
-   */
-  private final KafkaProducer<K, X> origin;
+    /**
+     * Origin Kafka Producer.
+     */
+    private final KafkaProducer<K, X> origin;
 
-  /**
-   * Ctor.
-   *
-   * @param orgn origin Kafka Producer
-   * @see KafkaProducer
-   */
-  public KfProducer(final KafkaProducer<K, X> orgn) {
-    this.origin = orgn;
-  }
+    /**
+     * Ctor.
+     *
+     * @param orgn origin Kafka Producer
+     * @see KafkaProducer
+     */
+    public KfProducer(final KafkaProducer<K, X> orgn) {
+        this.origin = orgn;
+    }
 
-  /**
-   * Ctor.
-   *
-   * @param settings Producer Settings
-   * @see ProducerSettings
-   */
-  public KfProducer(final ProducerSettings<K, X> settings) {
-    this(settings.producer());
-  }
+    /**
+     * Ctor.
+     *
+     * @param settings Producer Settings
+     * @see ProducerSettings
+     */
+    public KfProducer(final ProducerSettings<K, X> settings) {
+        this(settings.producer());
+    }
 
-  @Override
-  public Future<RecordMetadata> send(final Message<K, X> msg)
-    throws Exception {
-    return this.origin.send(msg.value());
-  }
+    @Override
+    public Future<RecordMetadata> send(final Message<K, X> msg) throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void close() {
-    this.origin.close();
-  }
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

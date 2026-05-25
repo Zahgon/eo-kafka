@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.consumer;
 
 import io.github.eocqrs.kafka.Consumer;
@@ -30,7 +29,6 @@ import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.cactoos.list.ListOf;
-
 import java.time.Duration;
 import java.util.Collection;
 
@@ -44,63 +42,57 @@ import java.util.Collection;
  */
 public final class KfConsumer<K, X> implements Consumer<K, X> {
 
-  /**
-   * Origin Kafka Consumer.
-   */
-  private final KafkaConsumer<K, X> origin;
+    /**
+     * Origin Kafka Consumer.
+     */
+    private final KafkaConsumer<K, X> origin;
 
-  /**
-   * Ctor.
-   *
-   * @param orgn origin Kafka Consumer
-   */
-  public KfConsumer(final KafkaConsumer<K, X> orgn) {
-    this.origin = orgn;
-  }
+    /**
+     * Ctor.
+     *
+     * @param orgn origin Kafka Consumer
+     */
+    public KfConsumer(final KafkaConsumer<K, X> orgn) {
+        this.origin = orgn;
+    }
 
-  /**
-   * Ctor.
-   *
-   * @param settings Consumer Settings
-   * @see ConsumerSettings
-   */
-  public KfConsumer(final ConsumerSettings<K, X> settings) {
-    this(settings.consumer());
-  }
+    /**
+     * Ctor.
+     *
+     * @param settings Consumer Settings
+     * @see ConsumerSettings
+     */
+    public KfConsumer(final ConsumerSettings<K, X> settings) {
+        this(settings.consumer());
+    }
 
-  @Override
-  public void subscribe(final String... topics) {
-    this.subscribe(new ListOf<>(topics));
-  }
+    @Override
+    public void subscribe(final String... topics) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void subscribe(final Collection<String> topics) {
-    this.origin.subscribe(topics);
-  }
+    @Override
+    public void subscribe(final Collection<String> topics) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void subscribe(
-    final ConsumerRebalanceListener listener,
-    final String... topics
-  ) {
-    this.origin.subscribe(new ListOf<>(topics), listener);
-  }
+    @Override
+    public void subscribe(final ConsumerRebalanceListener listener, final String... topics) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public ConsumerRecords<K, X> records(
-    final String topic, final Duration timeout
-  ) {
-    this.subscribe(topic);
-    return this.origin.poll(timeout);
-  }
+    @Override
+    public ConsumerRecords<K, X> records(final String topic, final Duration timeout) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void unsubscribe() {
-    this.origin.unsubscribe();
-  }
+    @Override
+    public void unsubscribe() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void close() {
-    this.origin.close();
-  }
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

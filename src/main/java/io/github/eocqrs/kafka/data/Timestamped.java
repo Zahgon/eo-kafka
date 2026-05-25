@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.data;
 
 import io.github.eocqrs.kafka.Message;
@@ -40,43 +39,34 @@ import org.cactoos.scalar.Synced;
  */
 public final class Timestamped<K, X> implements Message<K, X> {
 
-  /**
-   * Timestamp.
-   */
-  private final long timestamp;
+    /**
+     * Timestamp.
+     */
+    private final long timestamp;
 
-  /*
+    /*
    * @todo #428:60min/DEV Write tests for Timestamped caching mechanism.
    *   We need to prove with tests that our caching works
    *   and that it is also thread-safe.
    * */
-  /**
-   * Message.
-   */
-  private final Scalar<ProducerRecord<K, X>> message;
+    /**
+     * Message.
+     */
+    private final Scalar<ProducerRecord<K, X>> message;
 
-  /**
-   * Ctor.
-   *
-   * @param tmstmp Timestamp
-   * @param msg    Message
-   */
-  public Timestamped(
-    final long tmstmp,
-    final Message<K, X> msg
-  ) {
-    this.timestamp = tmstmp;
-    this.message = new Synced<>(new Sticky<>(msg));
-  }
+    /**
+     * Ctor.
+     *
+     * @param tmstmp Timestamp
+     * @param msg    Message
+     */
+    public Timestamped(final long tmstmp, final Message<K, X> msg) {
+        this.timestamp = tmstmp;
+        this.message = new Synced<>(new Sticky<>(msg));
+    }
 
-  @Override
-  public ProducerRecord<K, X> value() throws Exception {
-    return new ProducerRecord<>(
-      this.message.value().topic(),
-      this.message.value().partition(),
-      this.timestamp,
-      this.message.value().key(),
-      this.message.value().value()
-    );
-  }
+    @Override
+    public ProducerRecord<K, X> value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

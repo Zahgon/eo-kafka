@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.cactoos.Scalar;
@@ -34,33 +33,29 @@ import org.cactoos.Scalar;
  */
 public final class ThrowsOnFalse implements Scalar<Boolean> {
 
-  /**
-   * Logical statement.
-   */
-  private final Scalar<Boolean> scalar;
-  /**
-   * Error message.
-   */
-  private final String message;
+    /**
+     * Logical statement.
+     */
+    private final Scalar<Boolean> scalar;
 
-  /**
-   * Ctor.
-   *
-   * @param sclr Boolean scalar
-   * @param msg  Error Message
-   */
-  public ThrowsOnFalse(final Scalar<Boolean> sclr, final String msg) {
-    this.scalar = sclr;
-    this.message = msg;
-  }
+    /**
+     * Error message.
+     */
+    private final String message;
 
-  @Override
-  public Boolean value() throws Exception {
-    if (!this.scalar.value()) {
-      throw new IllegalArgumentException(
-        this.message
-      );
+    /**
+     * Ctor.
+     *
+     * @param sclr Boolean scalar
+     * @param msg  Error Message
+     */
+    public ThrowsOnFalse(final Scalar<Boolean> sclr, final String msg) {
+        this.scalar = sclr;
+        this.message = msg;
     }
-    return true;
-  }
+
+    @Override
+    public Boolean value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

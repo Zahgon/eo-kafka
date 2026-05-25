@@ -21,13 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.act;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 import org.cactoos.list.ListOf;
-
 import java.util.Collection;
 
 /**
@@ -38,44 +36,39 @@ import java.util.Collection;
  */
 public final class AssignPartitions implements Action {
 
-  /**
-   * Consumer.
-   */
-  private final KafkaConsumer<?, ?> consumer;
-  /**
-   * Partitions to assign.
-   */
-  private final Collection<TopicPartition> partitions;
+    /**
+     * Consumer.
+     */
+    private final KafkaConsumer<?, ?> consumer;
 
-  /**
-   * Ctor.
-   *
-   * @param cnsmr Kafka Consumer
-   * @param prts  Partitions to assign
-   */
-  public AssignPartitions(
-    final KafkaConsumer<?, ?> cnsmr,
-    final Collection<TopicPartition> prts
-  ) {
-    this.consumer = cnsmr;
-    this.partitions = prts;
-  }
+    /**
+     * Partitions to assign.
+     */
+    private final Collection<TopicPartition> partitions;
 
-  /**
-   * Ctor.
-   *
-   * @param cnsmr Kafka Consumer
-   * @param prts  Partitions to assign.
-   */
-  public AssignPartitions(
-    final KafkaConsumer<?, ?> cnsmr,
-    final TopicPartition... prts
-  ) {
-    this(cnsmr, new ListOf<>(prts));
-  }
+    /**
+     * Ctor.
+     *
+     * @param cnsmr Kafka Consumer
+     * @param prts  Partitions to assign
+     */
+    public AssignPartitions(final KafkaConsumer<?, ?> cnsmr, final Collection<TopicPartition> prts) {
+        this.consumer = cnsmr;
+        this.partitions = prts;
+    }
 
-  @Override
-  public void apply() {
-    this.consumer.assign(this.partitions);
-  }
+    /**
+     * Ctor.
+     *
+     * @param cnsmr Kafka Consumer
+     * @param prts  Partitions to assign.
+     */
+    public AssignPartitions(final KafkaConsumer<?, ?> cnsmr, final TopicPartition... prts) {
+        this(cnsmr, new ListOf<>(prts));
+    }
+
+    @Override
+    public void apply() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

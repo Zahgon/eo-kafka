@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import com.jcabi.log.Logger;
@@ -29,16 +28,15 @@ import io.github.eocqrs.kafka.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.cactoos.list.ListOf;
-
 import java.time.Clock;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.UUID;
+
 /*
  * @todo #303:90m/DEV fake consumer is not support various data types
  */
-
 /**
  * Fake Consumer.
  *
@@ -47,114 +45,57 @@ import java.util.UUID;
  */
 public final class FkConsumer implements Consumer<Object, String> {
 
-  /**
-   * Consumer id.
-   */
-  private final UUID id;
-  /**
-   * Broker.
-   */
-  private final FkBroker broker;
+    /**
+     * Consumer id.
+     */
+    private final UUID id;
 
-  /**
-   * Ctor.
-   *
-   * @param identifier UUID id
-   * @param brkr       FkBroker
-   */
-  public FkConsumer(final UUID identifier, final FkBroker brkr) {
-    this.id = identifier;
-    this.broker = brkr;
-  }
+    /**
+     * Broker.
+     */
+    private final FkBroker broker;
 
-  @Override
-  public void subscribe(final String... topics) {
-    this.subscribe(new ListOf<>(topics));
-  }
+    /**
+     * Ctor.
+     *
+     * @param identifier UUID id
+     * @param brkr       FkBroker
+     */
+    public FkConsumer(final UUID identifier, final FkBroker brkr) {
+        this.id = identifier;
+        this.broker = brkr;
+    }
 
-  @Override
-  public void subscribe(final Collection<String> topics) {
-    topics.forEach(
-      t -> {
-        try {
-          this.broker.with(new SubscribeDirs(t, this.id).value());
-        } catch (final Exception ex) {
-          throw new IllegalStateException(ex);
-        }
-      }
-    );
-  }
+    @Override
+    public void subscribe(final String... topics) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void subscribe(final ConsumerRebalanceListener listener,
-                        final String... topics) {
-    new ListOf<>(topics)
-      .forEach(t -> {
-        try {
-          this.broker.with(
-            new WithRebalanceListener(
-              new SubscribeDirs(t, this.id),
-              listener
-            ).value());
-        } catch (final Exception ex) {
-          throw new IllegalStateException(ex);
-        }
-      });
-  }
+    @Override
+    public void subscribe(final Collection<String> topics) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  /*
+    @Override
+    public void subscribe(final ConsumerRebalanceListener listener, final String... topics) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    /*
    * @todo #303:45m/DEV records timeout is not implemented
    */
-  @Override
-  public ConsumerRecords<Object, String> records(
-    final String topic, final Duration timeout
-  ) throws Exception {
-    this.broker.with(new SubscribeDirs(topic, this.id).value());
-    final ConsumerRecords<Object, String> records =
-      new FkRecords(
-        topic,
-        this.broker.data(
-          ("broker/topics/topic[name = '%s']/datasets"
-            + "/dataset[seen = 'false']/value/text()"
-          ).formatted(
-            topic
-          )
-        )
-      ).value();
-    records.forEach(rec -> {
-      try {
-        this.broker.with(new SeenDirs(topic, rec.value()).value());
-      } catch (final Exception ex) {
-        throw new IllegalStateException(ex);
-      }
-    });
-    return records;
-  }
-
-  @Override
-  public void unsubscribe() throws Exception {
-    while (
-      !this.broker.data(
-        "broker/subs/sub[consumer = '%s']/consumer/text()"
-          .formatted(
-            this.id
-          )
-      ).isEmpty()
-    ) {
-      this.broker.with(new UnsubscribeDirs(this.id).value());
+    @Override
+    public ConsumerRecords<Object, String> records(final String topic, final Duration timeout) throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  @Override
-  public void close() {
-    Logger.info(
-      this, "Consumer %s closed at %s"
-        .formatted(
-          this.id,
-          LocalDateTime.now(
-            Clock.systemUTC()
-          )
-        )
-    );
-  }
+    @Override
+    public void unsubscribe() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

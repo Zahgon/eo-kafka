@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.yaml;
 
 import io.github.eocqrs.kafka.ProducerSettings;
@@ -33,35 +32,34 @@ import org.apache.kafka.clients.producer.KafkaProducer;
  * @param <K> The key type.
  * @param <X> The value type.
  */
-public final class KfYamlProducerSettings<K, X>
-  implements ProducerSettings<K, X> {
+public final class KfYamlProducerSettings<K, X> implements ProducerSettings<K, X> {
 
-  /**
-   * YAML params.
-   */
-  private final YamlMapParams params;
+    /**
+     * YAML params.
+     */
+    private final YamlMapParams params;
 
-  /**
-   * Ctor.
-   *
-   * @param prms YAML Params
-   */
-  public KfYamlProducerSettings(final YamlMapParams prms) {
-    this.params = prms;
-  }
+    /**
+     * Ctor.
+     *
+     * @param prms YAML Params
+     */
+    public KfYamlProducerSettings(final YamlMapParams prms) {
+        this.params = prms;
+    }
 
-  /**
-   * Ctor.
-   *
-   * @param nm YAML file name
-   * @throws Exception when something went wrong
-   */
-  public KfYamlProducerSettings(final String nm) throws Exception {
-    this(new YamlMapParams(nm));
-  }
+    /**
+     * Ctor.
+     *
+     * @param nm YAML file name
+     * @throws Exception when something went wrong
+     */
+    public KfYamlProducerSettings(final String nm) throws Exception {
+        this(new YamlMapParams(nm));
+    }
 
-  @Override
-  public KafkaProducer<K, X> producer() {
-    return new KafkaProducer<>(this.params.value());
-  }
+    @Override
+    public KafkaProducer<K, X> producer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.xml;
 
 import io.github.eocqrs.kafka.parameters.KfFlexibleEnvelope;
@@ -39,29 +38,25 @@ import org.apache.kafka.clients.producer.KafkaProducer;
  */
 public final class KfXmlFlexible<K, X> extends KfFlexibleEnvelope<K, X> {
 
-  /**
-   * Ctor.
-   *
-   * @param name Name of XML configuration placed in resources folder.
-   * @throws Exception When something went wrong.
-   */
-  public KfXmlFlexible(final String name) throws Exception {
-    super(name);
-  }
+    /**
+     * Ctor.
+     *
+     * @param name Name of XML configuration placed in resources folder.
+     * @throws Exception When something went wrong.
+     */
+    public KfXmlFlexible(final String name) throws Exception {
+        super(name);
+    }
 
-  @Override
-  @SneakyThrows
-  public KafkaConsumer<K, X> consumer() {
-    return new KafkaConsumer<>(
-      new ConsumerXmlMapParams(this.settings).value()
-    );
-  }
+    @Override
+    @SneakyThrows
+    public KafkaConsumer<K, X> consumer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  @SneakyThrows
-  public KafkaProducer<K, X> producer() {
-    return new KafkaProducer<>(
-      new ProducerXmlMapParams(this.settings).value()
-    );
-  }
+    @Override
+    @SneakyThrows
+    public KafkaProducer<K, X> producer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

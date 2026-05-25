@@ -21,14 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.parameters;
 
 import io.github.eocqrs.kafka.Params;
 import io.github.eocqrs.kafka.ParamsAttr;
 import lombok.RequiredArgsConstructor;
 import org.cactoos.Scalar;
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -41,16 +39,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 final class MapParams implements Scalar<Map<String, Object>> {
 
-  /**
-   * The origin.
-   */
-  private final Params origin;
+    /**
+     * The origin.
+     */
+    private final Params origin;
 
-  @Override
-  public Map<String, Object> value() {
-    return this.origin
-      .all()
-      .stream()
-      .collect(Collectors.toMap(ParamsAttr::name, ParamsAttr::value));
-  }
+    @Override
+    public Map<String, Object> value() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.xml;
 
 import com.jcabi.xml.XML;
@@ -34,20 +33,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 final class TextXpath {
 
-  /**
-   * The XML file.
-   */
-  private final XML xml;
-  /**
-   * The XML element that xpath belongs to.
-   */
-  private final String node;
+    /**
+     * The XML file.
+     */
+    private final XML xml;
 
-  @Override
-  public String toString() {
-    return this.xml.nodes(this.node)
-      .get(0)
-      .xpath("text()")
-      .get(0);
-  }
+    /**
+     * The XML element that xpath belongs to.
+     */
+    private final String node;
+
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

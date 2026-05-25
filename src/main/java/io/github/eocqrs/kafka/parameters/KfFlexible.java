@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.parameters;
 
 import io.github.eocqrs.kafka.ConsumerSettings;
@@ -40,21 +39,20 @@ import org.apache.kafka.clients.producer.KafkaProducer;
  * @since 0.0.2
  */
 @RequiredArgsConstructor
-public final class KfFlexible<K, X>
-  implements ConsumerSettings<K, X>, ProducerSettings<K, X> {
+public final class KfFlexible<K, X> implements ConsumerSettings<K, X>, ProducerSettings<K, X> {
 
-  /**
-   * The params.
-   */
-  private final Params params;
+    /**
+     * The params.
+     */
+    private final Params params;
 
-  @Override
-  public KafkaConsumer<K, X> consumer() {
-    return new KafkaConsumer<>(new MapParams(this.params).value());
-  }
+    @Override
+    public KafkaConsumer<K, X> consumer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public KafkaProducer<K, X> producer() {
-    return new KafkaProducer<>(new MapParams(this.params).value());
-  }
+    @Override
+    public KafkaProducer<K, X> producer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

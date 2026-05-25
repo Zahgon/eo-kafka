@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.cactoos.Scalar;
@@ -34,34 +33,29 @@ import org.cactoos.Scalar;
  */
 public final class TopicExists implements Scalar<Boolean> {
 
-  /**
-   * Topic to check.
-   */
-  private final String topic;
-  /**
-   * Broker.
-   */
-  private final FkBroker broker;
+    /**
+     * Topic to check.
+     */
+    private final String topic;
 
-  /**
-   * Ctor.
-   *
-   * @param tpc  Topic to check
-   * @param brkr Broker
-   */
-  public TopicExists(final String tpc, final FkBroker brkr) {
-    this.topic = tpc;
-    this.broker = brkr;
-  }
+    /**
+     * Broker.
+     */
+    private final FkBroker broker;
 
-  @Override
-  public Boolean value() throws Exception {
-    return this.broker.data(
-        "broker/topics/topic[name = '%s']/name/text()"
-          .formatted(this.topic)
-      ).stream()
-      .anyMatch(s ->
-        s.equals(this.topic)
-      );
-  }
+    /**
+     * Ctor.
+     *
+     * @param tpc  Topic to check
+     * @param brkr Broker
+     */
+    public TopicExists(final String tpc, final FkBroker brkr) {
+        this.topic = tpc;
+        this.broker = brkr;
+    }
+
+    @Override
+    public Boolean value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

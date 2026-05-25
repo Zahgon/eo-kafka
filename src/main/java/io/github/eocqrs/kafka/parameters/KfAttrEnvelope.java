@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.parameters;
 
 import io.github.eocqrs.kafka.ParamsAttr;
@@ -35,43 +34,39 @@ import io.github.eocqrs.kafka.xml.NameInCamelCase;
  */
 public abstract class KfAttrEnvelope implements ParamsAttr {
 
-  /**
-   * The value.
-   */
-  protected final String value;
+    /**
+     * The value.
+     */
+    protected final String value;
 
-  /**
-   * The name.
-   */
-  protected final String name;
+    /**
+     * The name.
+     */
+    protected final String name;
 
-  /**
-   * Ctor.
-   *
-   * @param value The value
-   * @param name The name
-   */
-  protected KfAttrEnvelope(final String value, final String name) {
-    this.value = value;
-    this.name = name;
-  }
+    /**
+     * Ctor.
+     *
+     * @param value The value
+     * @param name The name
+     */
+    protected KfAttrEnvelope(final String value, final String name) {
+        this.value = value;
+        this.name = name;
+    }
 
-  @Override
-  public final String asXml() {
-    return "<%s>%s</%s>".formatted(
-      new NameInCamelCase(this.name),
-      this.value,
-      new NameInCamelCase(this.name)
-    );
-  }
+    @Override
+    public final String asXml() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public final String name() {
-    return this.name;
-  }
+    @Override
+    public final String name() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public final String value() {
-    return this.value;
-  }
+    @Override
+    public final String value() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

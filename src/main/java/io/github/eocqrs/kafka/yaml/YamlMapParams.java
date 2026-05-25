@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.yaml;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ import org.cactoos.Input;
 import org.cactoos.Scalar;
 import org.cactoos.io.ResourceOf;
 import org.yaml.snakeyaml.Yaml;
-
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
@@ -42,50 +40,42 @@ import java.util.Map;
 @RequiredArgsConstructor
 public final class YamlMapParams implements Scalar<Map<String, Object>> {
 
-  /**
-   * The config value.
-   */
-  private final Map<String, Object> value;
+    /**
+     * The config value.
+     */
+    private final Map<String, Object> value;
 
-  /**
-   * Filename ctor.
-   *
-   * @param name Config name
-   * @throws Exception When something went wrong
-   */
-  public YamlMapParams(final String name) throws Exception {
-    this(new ResourceOf(name));
-  }
+    /**
+     * Filename ctor.
+     *
+     * @param name Config name
+     * @throws Exception When something went wrong
+     */
+    public YamlMapParams(final String name) throws Exception {
+        this(new ResourceOf(name));
+    }
 
-  /**
-   * Input ctor.
-   *
-   * @param input Input source
-   * @throws Exception When something went wrong
-   */
-  public YamlMapParams(final Input input) throws Exception {
-    this(input.stream());
-  }
+    /**
+     * Input ctor.
+     *
+     * @param input Input source
+     * @throws Exception When something went wrong
+     */
+    public YamlMapParams(final Input input) throws Exception {
+        this(input.stream());
+    }
 
-  /**
-   * Primary ctor.
-   *
-   * @param stream Input source
-   */
-  public YamlMapParams(final InputStream stream) {
-    this.value = new Yaml().load(stream);
-  }
+    /**
+     * Primary ctor.
+     *
+     * @param stream Input source
+     */
+    public YamlMapParams(final InputStream stream) {
+        this.value = new Yaml().load(stream);
+    }
 
-  @Override
-  public Map<String, Object> value() {
-    final Map<String, Object> accum = new HashMap<>(0);
-    this.value
-      .forEach(
-        (key, val) -> accum.put(
-          key.replace('-', '.'),
-          val
-        )
-      );
-    return Collections.unmodifiableMap(accum);
-  }
+    @Override
+    public Map<String, Object> value() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

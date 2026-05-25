@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.producer;
 
 import io.github.eocqrs.kafka.Message;
@@ -30,7 +29,6 @@ import io.github.eocqrs.kafka.ProducerSettings;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.RecordMetadata;
-
 import java.util.concurrent.Future;
 
 /**
@@ -43,51 +41,44 @@ import java.util.concurrent.Future;
  */
 public final class KfCallback<K, X> implements Producer<K, X> {
 
-  /**
-   * The origin.
-   */
-  private final KafkaProducer<K, X> origin;
+    /**
+     * The origin.
+     */
+    private final KafkaProducer<K, X> origin;
 
-  /**
-   * The callback.
-   */
-  private final Callback callback;
+    /**
+     * The callback.
+     */
+    private final Callback callback;
 
-  /**
-   * Settings ctor.
-   *
-   * @param settings The producer settings
-   * @param callback The callback
-   */
-  public KfCallback(
-    final ProducerSettings<K, X> settings,
-    final Callback callback
-  ) {
-    this(settings.producer(), callback);
-  }
+    /**
+     * Settings ctor.
+     *
+     * @param settings The producer settings
+     * @param callback The callback
+     */
+    public KfCallback(final ProducerSettings<K, X> settings, final Callback callback) {
+        this(settings.producer(), callback);
+    }
 
-  /**
-   * Primary ctor.
-   *
-   * @param origin   The origin producer.
-   * @param callback The callback
-   */
-  public KfCallback(final KafkaProducer<K, X> origin, final Callback callback) {
-    this.origin = origin;
-    this.callback = callback;
-  }
+    /**
+     * Primary ctor.
+     *
+     * @param origin   The origin producer.
+     * @param callback The callback
+     */
+    public KfCallback(final KafkaProducer<K, X> origin, final Callback callback) {
+        this.origin = origin;
+        this.callback = callback;
+    }
 
-  @Override
-  public Future<RecordMetadata> send(final Message<K, X> msg)
-    throws Exception {
-    return this.origin.send(
-      msg.value(),
-      this.callback
-    );
-  }
+    @Override
+    public Future<RecordMetadata> send(final Message<K, X> msg) throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void close() {
-    this.origin.close();
-  }
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

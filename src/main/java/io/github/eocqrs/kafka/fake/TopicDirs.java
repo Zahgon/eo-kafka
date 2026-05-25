@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.cactoos.Scalar;
@@ -36,28 +35,22 @@ import org.xembly.Directives;
  */
 public final class TopicDirs implements Scalar<Directives> {
 
-  /**
-   * Topic.
-   */
-  private final String topic;
+    /**
+     * Topic.
+     */
+    private final String topic;
 
-  /**
-   * Ctor.
-   *
-   * @param tpc Topic
-   */
-  public TopicDirs(final String tpc) {
-    this.topic = tpc;
-  }
+    /**
+     * Ctor.
+     *
+     * @param tpc Topic
+     */
+    public TopicDirs(final String tpc) {
+        this.topic = tpc;
+    }
 
-  @Override
-  public Directives value() throws Exception {
-    return new Directives()
-      .xpath("broker/topics")
-      .add("topic")
-      .addIf("name")
-      .set(this.topic)
-      .up()
-      .addIf("datasets");
-  }
+    @Override
+    public Directives value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

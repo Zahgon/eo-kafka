@@ -21,13 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.parameters;
 
 import io.github.eocqrs.kafka.Params;
 import io.github.eocqrs.kafka.ParamsAttr;
 import org.cactoos.list.ListOf;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -40,30 +38,27 @@ import java.util.stream.Collectors;
  */
 public final class KfParams implements Params {
 
-  /**
-   * The params.
-   */
-  private final Collection<ParamsAttr> params;
+    /**
+     * The params.
+     */
+    private final Collection<ParamsAttr> params;
 
-  /**
-   * Ctor.
-   *
-   * @param args Kafka parameters.
-   */
-  public KfParams(final ParamsAttr... args) {
-    this.params = new ListOf<>(args);
-  }
+    /**
+     * Ctor.
+     *
+     * @param args Kafka parameters.
+     */
+    public KfParams(final ParamsAttr... args) {
+        this.params = new ListOf<>(args);
+    }
 
-  @Override
-  public Collection<ParamsAttr> all() {
-    return Collections.unmodifiableCollection(this.params);
-  }
+    @Override
+    public Collection<ParamsAttr> all() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String asXml() {
-    return this.params
-      .stream()
-      .map(ParamsAttr::asXml)
-      .collect(Collectors.joining("\n"));
-  }
+    @Override
+    public String asXml() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

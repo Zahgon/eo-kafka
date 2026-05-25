@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.xml;
 
 import com.jcabi.xml.XML;
@@ -29,7 +28,6 @@ import com.jcabi.xml.XMLDocument;
 import org.cactoos.Input;
 import org.cactoos.Scalar;
 import org.cactoos.io.ResourceOf;
-
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
@@ -45,79 +43,56 @@ import java.util.stream.Collectors;
  */
 abstract class XmlMapParams implements Scalar<Map<String, Object>> {
 
-  /**
-   * It's a regex that matches all capital letters except the first one.
-   */
-  private static final Pattern CAPITALS = Pattern.compile("(?<!^)([A-Z])");
+    /**
+     * It's a regex that matches all capital letters except the first one.
+     */
+    private static final Pattern CAPITALS = Pattern.compile("(?<!^)([A-Z])");
 
-  /**
-   * The origin config.
-   */
-  private final XML configuration;
+    /**
+     * The origin config.
+     */
+    private final XML configuration;
 
-  /**
-   * Consumer or Producer.
-   */
-  private final KfCustomer customer;
+    /**
+     * Consumer or Producer.
+     */
+    private final KfCustomer customer;
 
-  /**
-   * Ctor.
-   *
-   * @param config XML config.
-   * @param cust   Customer type.
-   */
-  protected XmlMapParams(final XML config, final KfCustomer cust) {
-    this.configuration = config;
-    this.customer = cust;
-  }
+    /**
+     * Ctor.
+     *
+     * @param config XML config.
+     * @param cust   Customer type.
+     */
+    protected XmlMapParams(final XML config, final KfCustomer cust) {
+        this.configuration = config;
+        this.customer = cust;
+    }
 
-  /**
-   * A ctor that takes an Input and converts it to XMLDocument.
-   *
-   * @param resource Resource with settings.
-   * @param cust     Customer type.
-   * @throws Exception When something went wrong.
-   */
-  protected XmlMapParams(final Input resource, final KfCustomer cust)
-    throws Exception {
-    this(new XMLDocument(resource.stream()), cust);
-  }
+    /**
+     * A ctor that takes an Input and converts it to XMLDocument.
+     *
+     * @param resource Resource with settings.
+     * @param cust     Customer type.
+     * @throws Exception When something went wrong.
+     */
+    protected XmlMapParams(final Input resource, final KfCustomer cust) throws Exception {
+        this(new XMLDocument(resource.stream()), cust);
+    }
 
-  /**
-   * A constructor that takes a String and converts it to ResourceOf.
-   *
-   * @param name Name of resource.
-   * @param cust Customer type.
-   * @throws Exception When something went wrong.
-   */
-  protected XmlMapParams(final String name, final KfCustomer cust)
-    throws Exception {
-    this(new ResourceOf(name), cust);
-  }
+    /**
+     * A constructor that takes a String and converts it to ResourceOf.
+     *
+     * @param name Name of resource.
+     * @param cust Customer type.
+     * @throws Exception When something went wrong.
+     */
+    protected XmlMapParams(final String name, final KfCustomer cust) throws Exception {
+        this(new ResourceOf(name), cust);
+    }
 
-  @Override
-  public final Map<String, Object> value() throws Exception {
-    return Collections.unmodifiableMap(
-      new XMLDocument(this.configuration.toString())
-        .nodes("//%s/*".formatted(this.customer))
-        .stream()
-        .map(Object::toString)
-        .map(XMLDocument::new)
-        .map(xml -> xml.nodes("//*").get(0).node().getNodeName())
-        .collect(
-          Collectors.toMap(
-            name ->
-              XmlMapParams.CAPITALS
-                .matcher(name)
-                .replaceAll(".$1")
-                .toLowerCase(Locale.ROOT),
-            name ->
-              new TextXpath(
-                this.configuration,
-                "//%s".formatted(name)
-              ).toString()
-          )
-        )
-    );
-  }
+    @Override
+    public final Map<String, Object> value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

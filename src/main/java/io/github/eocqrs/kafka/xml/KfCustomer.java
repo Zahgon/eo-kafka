@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.xml;
 
 /**
@@ -31,32 +30,32 @@ package io.github.eocqrs.kafka.xml;
  * @since 0.0.2
  */
 enum KfCustomer {
-  /**
-   * The consumer.
-   */
-  CONSUMER("consumer"),
-  /**
-   * The producer.
-   */
-  PRODUCER("producer");
 
-  /**
-   * The name.
-   */
-  private final String name;
+    /**
+     * The consumer.
+     */
+    CONSUMER("consumer"),
+    /**
+     * The producer.
+     */
+    PRODUCER("producer");
 
-  /**
-   * Ctor.
-   *
-   * @param name The name.
-   */
-  KfCustomer(final String name) {
-    this.name = name;
-  }
+    /**
+     * The name.
+     */
+    private final String name;
 
+    /**
+     * Ctor.
+     *
+     * @param name The name.
+     */
+    KfCustomer(final String name) {
+        this.name = name;
+    }
 
-  @Override
-  public String toString() {
-    return this.name;
-  }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

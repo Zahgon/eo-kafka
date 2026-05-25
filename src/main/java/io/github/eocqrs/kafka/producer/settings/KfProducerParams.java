@@ -21,13 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.producer.settings;
 
 import io.github.eocqrs.kafka.Params;
 import io.github.eocqrs.kafka.ParamsAttr;
 import lombok.RequiredArgsConstructor;
-
 import java.util.Collection;
 
 /**
@@ -42,19 +40,18 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public final class KfProducerParams implements Params {
 
-  /**
-   * The origin.
-   */
-  private final Params origin;
+    /**
+     * The origin.
+     */
+    private final Params origin;
 
-  @Override
-  public Collection<ParamsAttr> all() {
-    return this.origin.all();
-  }
+    @Override
+    public Collection<ParamsAttr> all() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String asXml() {
-    return "<producer>\n%s\n</producer>\n"
-      .formatted(this.origin.asXml());
-  }
+    @Override
+    public String asXml() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

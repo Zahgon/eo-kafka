@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.json;
 
 import com.jcabi.xml.XMLDocument;
@@ -44,58 +43,31 @@ import org.cactoos.io.ResourceOf;
  * @author Aliaksei Bialiauski (abialiauski.dev@gmail.com)
  * @since 0.4.6
  */
-public final class KfJsonFlexible<K, X>
-  implements ConsumerSettings<K, X>, ProducerSettings<K, X> {
+public final class KfJsonFlexible<K, X> implements ConsumerSettings<K, X>, ProducerSettings<K, X> {
 
-  /**
-   * JSON name.
-   */
-  private final String name;
+    /**
+     * JSON name.
+     */
+    private final String name;
 
-  /**
-   * Ctor.
-   *
-   * @param nm JSON name
-   */
-  public KfJsonFlexible(final String nm) {
-    this.name = nm;
-  }
+    /**
+     * Ctor.
+     *
+     * @param nm JSON name
+     */
+    public KfJsonFlexible(final String nm) {
+        this.name = nm;
+    }
 
-  @Override
-  @SneakyThrows
-  public KafkaConsumer<K, X> consumer() {
-    return new KafkaConsumer<>(
-      new ConsumerXmlMapParams(
-        new XMLDocument(
-          new JsonXML(
-            new JsonOf(
-              new ResourceOf(
-                this.name
-              ).stream()
-            ),
-            "consumer"
-          ).asString()
-        )
-      ).value()
-    );
-  }
+    @Override
+    @SneakyThrows
+    public KafkaConsumer<K, X> consumer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  @SneakyThrows
-  public KafkaProducer<K, X> producer() {
-    return new KafkaProducer<>(
-      new ProducerXmlMapParams(
-        new XMLDocument(
-          new JsonXML(
-            new JsonOf(
-              new ResourceOf(
-                this.name
-              ).stream()
-            ),
-            "producer"
-          ).asString()
-        )
-      ).value()
-    );
-  }
+    @Override
+    @SneakyThrows
+    public KafkaProducer<K, X> producer() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.fake;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -29,7 +28,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.TopicPartition;
 import org.cactoos.Scalar;
 import org.cactoos.list.ListOf;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -41,69 +39,47 @@ import java.util.Map;
  * @author Aliaksei Bialiauski (abialiauski.dev@gmail.com)
  * @since 0.3.5
  */
-public final class FkRecords implements
-  Scalar<ConsumerRecords<Object, String>> {
+public final class FkRecords implements Scalar<ConsumerRecords<Object, String>> {
 
-  /*
+    /*
    * @todo #303:45m/DEV multi partitioning is not supported
    */
-  /**
-   * Default Partition.
-   */
-  private static final int DEFAULT_PARTITION = 0;
-  /**
-   * Zero Offset.
-   */
-  private static final long ZERO_OFFSET = 0L;
-  /**
-   * Records related to a topic.
-   */
-  private final String topic;
-  /**
-   * Dataset to transform.
-   */
-  private final Collection<String> datasets;
+    /**
+     * Default Partition.
+     */
+    private static final int DEFAULT_PARTITION = 0;
 
-  /**
-   * Ctor.
-   *
-   * @param tpc  Topic
-   * @param dtst Dataset to transform
-   */
-  public FkRecords(
-    final String tpc,
-    final Collection<String> dtst
-  ) {
-    this.topic = tpc;
-    this.datasets = dtst;
-  }
+    /**
+     * Zero Offset.
+     */
+    private static final long ZERO_OFFSET = 0L;
 
-  /*
+    /**
+     * Records related to a topic.
+     */
+    private final String topic;
+
+    /**
+     * Dataset to transform.
+     */
+    private final Collection<String> datasets;
+
+    /**
+     * Ctor.
+     *
+     * @param tpc  Topic
+     * @param dtst Dataset to transform
+     */
+    public FkRecords(final String tpc, final Collection<String> dtst) {
+        this.topic = tpc;
+        this.datasets = dtst;
+    }
+
+    /*
    * @todo #303:45m/DEV message key is not supported
    */
-  @Override
-  public ConsumerRecords<Object, String> value() throws Exception {
-    final List<ConsumerRecord<Object, String>> recs = new ListOf<>();
-    this.datasets.forEach(
-      dataset -> recs.add(
-        new ConsumerRecord<>(
-          this.topic,
-          FkRecords.DEFAULT_PARTITION,
-          FkRecords.ZERO_OFFSET,
-          null,
-          dataset
-        )
-      )
-    );
-    final Map<TopicPartition, List<ConsumerRecord<Object, String>>> part
-      = new HashMap<>(0);
-    part.put(
-      new TopicPartition(
-        this.topic,
-        FkRecords.DEFAULT_PARTITION
-      ),
-      recs
-    );
-    return new ConsumerRecords<>(part);
-  }
+    @Override
+    public ConsumerRecords<Object, String> value() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

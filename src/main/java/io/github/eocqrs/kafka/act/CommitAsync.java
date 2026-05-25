@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.act;
 
 import lombok.RequiredArgsConstructor;
@@ -36,13 +35,13 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 @RequiredArgsConstructor
 public final class CommitAsync implements Action {
 
-  /**
-   * Consumer.
-   */
-  private final KafkaConsumer<?, ?> consumer;
+    /**
+     * Consumer.
+     */
+    private final KafkaConsumer<?, ?> consumer;
 
-  @Override
-  public void apply() {
-    this.consumer.commitAsync();
-  }
+    @Override
+    public void apply() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

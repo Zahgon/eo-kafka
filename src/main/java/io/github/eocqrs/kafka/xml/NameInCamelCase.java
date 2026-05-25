@@ -21,14 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.github.eocqrs.kafka.xml;
 
 import lombok.RequiredArgsConstructor;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.Capitalized;
 import org.cactoos.text.Concatenated;
-
 import java.util.stream.Collectors;
 
 /**
@@ -41,21 +39,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public final class NameInCamelCase {
 
-  /**
-   * The origin.
-   */
-  private final String origin;
+    /**
+     * The origin.
+     */
+    private final String origin;
 
-  @Override
-  public String toString() {
-    final String[] words = this.origin.split("\\.");
-    return new Concatenated(
-      words[0],
-      new ListOf<>(words)
-        .subList(1, words.length)
-        .stream()
-        .map(word -> new Capitalized(word).toString())
-        .collect(Collectors.joining(""))
-    ).toString();
-  }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
